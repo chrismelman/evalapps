@@ -1,0 +1,4 @@
+*.dependencies.webdsl
+*/.saved-but-not-built
+*/.servletapp/*
+*/application.ini
