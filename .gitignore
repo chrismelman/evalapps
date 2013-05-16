@@ -2,3 +2,5 @@
 */.saved-but-not-built
 */.servletapp/*
 */application.ini
+*/.webdsl-fragment-cache/*
+*/.webdsl-parsecache/*
