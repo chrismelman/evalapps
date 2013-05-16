@@ -13,25 +13,23 @@ imports
   lib/nbl-library.generated
   names
   check
-  generate
-  refactor
+
 
 rules // Analysis
   
 	// Analyzes the current program, returning a tuple with the analyzed AST, errors, warnings, notes and
 	// files that should be re-analyzed.
   analyze:
-    (ast, path, project-path) -> (ast'', errors, warnings, notes, filesToAnalyze')
+    (ast, path, project-path) -> (ast'', errors, warnings, notes, [])
     with
       ast'                    := <id> ast; // Optional AST desugaring
       (ast'', filesToAnalyze) := <analyze-top(|<language>)> (ast', path, project-path);
       index-transaction(
-	      errors                := <collect-all(constraint-error, conc)> ast'';
-	      warnings              := <collect-all(constraint-warning, conc)> ast'';
-	      notes                 := <collect-all(constraint-note, conc)> ast''
-      );
-      filesToAnalyze'         := <index-filepairs-to-files> filesToAnalyze
-
+	      errors                := [];
+	      warnings              := [];
+	      notes                 := []
+      )
+      
   // Main entry point for analyzes, called when a single file is opened in the editor.
   editor-analyze:
     (ast, path, project-path) -> (ast', errors, warnings, notes)
@@ -171,3 +169,28 @@ rules // Utility
     files -> None()
     with
       index-sequential-analyze-files(analyze)
+      
+ rules// custom analyze
+ 	
+ 	  // transform to csv
+  transform-to-csv:
+    (selected, position, ast, path, project-path) -> (filename, result)
+    with
+      filename := <guarantee-extension(|"csv")> path;
+      result   := <transform-to-csv-string(|path)> ast
+
+
+	transform-to-csv-string(|path): Module(Results, _) -> string
+		with
+			results1 := <map(get-first-total-result)> Results;
+			average1 := <map(string-to-real); average; real-to-string> results1;
+			results2 := <map(get-second-total-result)> Results;
+			average2 := <map(string-to-real); average; real-to-string> results2;
+			list := <concat> [[<remove-extension> path |results1], [average1,"",average2], results2];
+			string := <separate-by(|";"); concat-strings> list
+		
+	get-first-total-result: Result(_,_,_,Total(time,_),_,_) -> time
+	
+	get-second-total-result: Result(_,_,_,_,_,Total(time,_)) -> time
+	
+ 	
