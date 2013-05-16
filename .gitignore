@@ -4,3 +4,14 @@
 */application.ini
 */.webdsl-fragment-cache/*
 */.webdsl-parsecache/*
+resultParser/bin/*
+resultParser/.cache/*
+resultParser/include/*
+
+resultParser/editor/java/trans
+resultParser/editor/*.generated.esv
+resultParser/syntax/*.generated.esv
+resultParser/.settings/org.eclipse.jdt.core.prefs
+resultParser/utils/*
+resultParser/lib/*.generated.str
+resultParser/lib-refactoring/*.generated.str

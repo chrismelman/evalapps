@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?eclipse version="3.0"?>
+
+<plugin>
+       <extension point="org.eclipse.imp.runtime.languageDescription">
+          <language extensions="result" description="ResultParser" language="ResultParser" derivedFrom="DynamicRoot" validator="resultParser.ResultParserValidator" validatorClass="resultParser.ResultParserValidator"></language>
+       </extension>
+       <extension id="resultParser.parser" name="ResultParser Parser" point="org.eclipse.imp.runtime.parser">
+          <parser class="resultParser.ResultParserParseController" language="ResultParser">
+          </parser>
+       </extension>    
+    </plugin>

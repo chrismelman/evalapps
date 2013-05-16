@@ -1,0 +1,16 @@
+module ResultParser.main
+
+imports ResultParser-Builders ResultParser-Refactorings ResultParser-Colorer ResultParser-Completions ResultParser-Folding ResultParser-Outliner ResultParser-References ResultParser-Syntax
+
+language General properties
+                  
+  name          : ResultParser
+  id            : resultParser
+  extends       : Root
+                  
+  description   : "Spoofax/IMP-generated editor for the ResultParser language"
+  url           : http://strategoxt.org
+                  
+  extensions    : result
+  table         : include/ResultParser.tbl
+  start symbols : Start

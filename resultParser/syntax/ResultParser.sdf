@@ -1,0 +1,19 @@
+%% Grammar for the ResultParser language
+%% By default, based on an example "entities" syntax
+module ResultParser
+
+imports Common
+
+exports
+
+  context-free start-symbols
+  
+    Start
+
+  context-free syntax
+  
+     Result* ?NUMBER      -> Start {"Module"}
+    NUMBER Place ResultLine+ TotalLine ResultLine+ TotalLine  -> Result {"Result"}
+    "time needed for syncing" ID ":" NUMBER Place-> ResultLine {"ResultLine"}
+    FILENAME ":" INT                   -> Place {"Place"}
+    "totaltime:" NUMBER	Place			   -> TotalLine {"Total"}
