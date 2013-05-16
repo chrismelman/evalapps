@@ -178,6 +178,12 @@ rules // Utility
     with
       filename := <guarantee-extension(|"csv")> path;
       result   := <transform-to-csv-string(|path)> ast
+  
+  transform-to-csv-summary:
+    (selected, position, ast, path, project-path) -> (filename, result)
+    with
+      filename := <guarantee-extension(|"avg.csv")> path;
+      result   := <transform-to-csv-string-summary(|path)> ast
 
 
 	transform-to-csv-string(|path): Module(Results, _) -> string
@@ -188,7 +194,17 @@ rules // Utility
 			average2 := <map(string-to-real); average; real-to-string> results2;
 			list := <concat> [[<remove-extension> path |results1], [average1,"",average2], results2];
 			string := <separate-by(|";"); concat-strings> list
-		
+	
+	transform-to-csv-string-summary(|path): Module(Results, _) -> string
+		with
+			results1 := <map(get-first-total-result)> Results;
+			average1 := <map(string-to-real); average; real-to-string> results1;
+			results2 := <map(get-second-total-result)> Results;
+			average2 := <map(string-to-real); average; real-to-string> results2;
+			list := [<remove-extension> path, average1,"",average2];
+			string := <separate-by(|";"); concat-strings> list
+			
+			
 	get-first-total-result: Result(_,_,_,Total(time,_),_,_) -> time
 	
 	get-second-total-result: Result(_,_,_,_,_,Total(time,_)) -> time
