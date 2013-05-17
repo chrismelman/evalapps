@@ -1,0 +1,39 @@
+application Test
+import mobl::ui::generic
+import webservices::mobl::simpleView
+import webservices::mobl::model
+import webservices::mobl::sync
+import webservices::mobl::unsync
+
+screen root(){
+	 script{
+	 	var num = LocalStorage.getNum("num");
+	 	log(num);
+	 	num = num + 1;
+	 	LocalStorage.setItem("num", num);
+	 	if(num <= 5){
+	 		test(); 
+	 	} else {
+	 		LocalStorage.setItem("num", 0);
+	 	}
+	 	
+	 }
+	// group{ 
+	// 	button("test", onclick={ test();})
+	// }
+	
+}
+  
+ 
+
+function test(){	
+	getTopLevelEntitiesByService(); 
+	var ent = A.all().list().one();
+	ent.sync = true; 
+	sleep(2000);
+	newSync();
+	sleep(2000);
+	newSync();
+	resetDatabase();
+	reload();
+	}
