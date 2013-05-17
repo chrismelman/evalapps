@@ -1,6 +1,6 @@
-application testevalapp
+application linearmodel
 
-imports webservices/services/interface
+// imports webservices/services/interface
 page root(){
 	 
 }
@@ -8,43 +8,90 @@ page root(){
 derive webservices for A , with nameproperty name 
 entity A{
 	name : String
-	listb -> List<B>
+	list -> List<B>
 	
 }
 
 entity B {
 	name :: String
-	listc -> List<C>
+	list -> List<C>
 	
 	
 }
 
 function newB(name : String) : B {
-		var b := B {name := name};
-		b.save(); 
-		while(b.listc.length < 1){
-			b.listc.add(newC(name)); 
+		var ent := B {name := name};
+		ent.save(); 
+		while(ent.list.length < 1){
+			ent.list.add(newC(name)); 
 		}
-		return b;
+		return ent;
+	}
+	
+	entity C {
+	name :: String
+	list -> List<D>
+	
+	
+}
+
+function newC(name : String) : C {
+		var ent := C {name := name};
+		ent.save(); 
+		while(ent.list.length < 1){
+			ent.list.add(newD(name)); 
+		}
+		return ent;
+	}
+	
+entity D {
+	name :: String
+	list -> List<E>
+	
+	
+}
+
+function newD(name : String) : D {
+		var ent := D {name := name};
+		ent.save(); 
+		while(ent.list.length < 1){
+			ent.list.add(newE(name)); 
+		}
+		return ent;
+	}
+	
+entity E {
+	name :: String
+	list -> List<F>
+	
+	
+}
+
+function newE(name : String) : E {
+		var ent := E {name := name};
+		ent.save(); 
+		while(ent.list.length < 1){
+			ent.list.add(newF(name)); 
+		}
+		return ent;
 	}
 
-entity C {
+entity F {
 	name :: String
 	
 }  
 
-function newC (name : String) : C {
-	  var c := C{name := name};
-	  c.save();
-	  return c;
+function newF (name : String) : F {
+	  var ent := F{name := name};
+	  ent.save();
+	  return ent;
 }
+
 init {
 	var defstring := "aaaa";
 	var a := A{ name := defstring };
 	a.save();
-	while(a.listb.length < 1){
-		a.listb.add(newB(defstring));
+	while(a.list.length < 1){
+		a.list.add(newB(defstring));
 	}
-	
-	
 }
