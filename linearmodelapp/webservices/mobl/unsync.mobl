@@ -1,0 +1,95 @@
+module webservices::mobl::unsync
+  import webservices :: mobl :: model
+  import webservices :: mobl :: sync
+  import mobl :: ui :: generic
+  function nrUnsyncedA ( ) : Num {
+    return getUnsyncedA ( ) . count ( );
+  }
+  function nrUnsyncedB ( ) : Num {
+    return getUnsyncedB ( ) . count ( );
+  }
+  function nrUnsyncedC ( ) : Num {
+    return getUnsyncedC ( ) . count ( );
+  }
+  function nrUnsyncedD ( ) : Num {
+    return getUnsyncedD ( ) . count ( );
+  }
+  function nrUnsyncedE ( ) : Num {
+    return getUnsyncedE ( ) . count ( );
+  }
+  function nrUnsyncedF ( ) : Num {
+    return getUnsyncedF ( ) . count ( );
+  }
+  function getUnsyncedA ( ) : Collection < A > {
+    return A . all ( ) . filter ( "version" , "=" , 0 ) . filter ( "sync" , "=" , true );
+  }
+  function getUnsyncedB ( ) : Collection < B > {
+    return B . all ( ) . filter ( "version" , "=" , 0 );
+  }
+  function getUnsyncedC ( ) : Collection < C > {
+    return C . all ( ) . filter ( "version" , "=" , 0 );
+  }
+  function getUnsyncedD ( ) : Collection < D > {
+    return D . all ( ) . filter ( "version" , "=" , 0 );
+  }
+  function getUnsyncedE ( ) : Collection < E > {
+    return E . all ( ) . filter ( "version" , "=" , 0 );
+  }
+  function getUnsyncedF ( ) : Collection < F > {
+    return F . all ( ) . filter ( "version" , "=" , 0 );
+  }
+  function syncUnsyncedA ( ) {
+    var begin = now ( ) ;
+    Sync . syncA ( getUnsyncedA ( ) . selectJSON ( [ "id" , "version" ] ) );
+    log("time needed for syncing unsynced A: "+( ( now ( ) - begin ) / 1000 ) . toString ( ));
+  }
+  function syncUnsyncedB ( ) {
+    var begin = now ( ) ;
+    Sync . syncB ( getUnsyncedB ( ) . selectJSON ( [ "id" , "version" ] ) );
+    log("time needed for syncing unsynced B: "+( ( now ( ) - begin ) / 1000 ) . toString ( ));
+  }
+  function syncUnsyncedC ( ) {
+    var begin = now ( ) ;
+    Sync . syncC ( getUnsyncedC ( ) . selectJSON ( [ "id" , "version" ] ) );
+    log("time needed for syncing unsynced C: "+( ( now ( ) - begin ) / 1000 ) . toString ( ));
+  }
+  function syncUnsyncedD ( ) {
+    var begin = now ( ) ;
+    Sync . syncD ( getUnsyncedD ( ) . selectJSON ( [ "id" , "version" ] ) );
+    log("time needed for syncing unsynced D: "+( ( now ( ) - begin ) / 1000 ) . toString ( ));
+  }
+  function syncUnsyncedE ( ) {
+    var begin = now ( ) ;
+    Sync . syncE ( getUnsyncedE ( ) . selectJSON ( [ "id" , "version" ] ) );
+    log("time needed for syncing unsynced E: "+( ( now ( ) - begin ) / 1000 ) . toString ( ));
+  }
+  function syncUnsyncedF ( ) {
+    var begin = now ( ) ;
+    Sync . syncF ( getUnsyncedF ( ) . selectJSON ( [ "id" , "version" ] ) );
+    log("time needed for syncing unsynced F: "+( ( now ( ) - begin ) / 1000 ) . toString ( ));
+  }
+  control statusUnsyncedEntities ( ) {
+    group {
+      < h3 >
+        "Unsynced"
+      </ h3 >
+      < p >
+        label ( "A: " + nrUnsyncedA ( ) )
+      </ p >
+      < p >
+        label ( "B: " + nrUnsyncedB ( ) )
+      </ p >
+      < p >
+        label ( "C: " + nrUnsyncedC ( ) )
+      </ p >
+      < p >
+        label ( "D: " + nrUnsyncedD ( ) )
+      </ p >
+      < p >
+        label ( "E: " + nrUnsyncedE ( ) )
+      </ p >
+      < p >
+        label ( "F: " + nrUnsyncedF ( ) )
+      </ p >
+    }
+  }

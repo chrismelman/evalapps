@@ -1,6 +1,6 @@
 application linearmodel
 
-// imports webservices/services/interface
+imports webservices/services/interface
 page root(){
 	 
 }
@@ -82,7 +82,7 @@ entity F {
 }  
 
 function newF (name : String) : F {
-	  var ent := F{name := name};
+	  var ent := F{name := name}; 
 	  ent.save();
 	  return ent;
 }
