@@ -24,8 +24,8 @@ builders
   builder  : "Clear index for current file"        = debug-index-clear-current (meta) (source)                              
   builder  : "Clear index"                         = debug-index-clear (meta) (source)                                      
   builder  : "Reload index"                        = debug-index-reload (meta) (source)        
-  builder  : "generate csv"                        = transform-to-csv (openeditor) (realtime) (source)    
-  builder  : "generate csv average"                =  transform-to-csv-summary (openeditor) (realtime) (source)    
+  builder  : "generate csv"                        = transform-to-csv  (realtime) (source)    
+  builder  : "generate csv average"                =  transform-to-csv-summary  (realtime) (source)    
 
                            
                                                                                                                             
