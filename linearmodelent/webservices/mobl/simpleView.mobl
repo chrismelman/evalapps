@@ -1,0 +1,1861 @@
+module webservices::mobl::simpleView
+  import webservices :: mobl :: model
+  import mobl :: ui :: generic
+  import mobl :: ui :: generic :: datepicker
+  screen showControl ( viewer : Control1 < Entity < ? > > , value : Entity < ? > ) {
+    viewer ( value )
+  }
+  screen showControlList ( viewer : Control3 < String , Collection < Entity < ? > > , Control1 < Dynamic > > , headerName : String , values : Collection < Entity < ? > > , dviewer : Control1 < Dynamic > ) {
+    viewer ( headerName , values , dviewer )
+  }
+  control showField ( name : String , value : String ) {
+    item {
+      label ( name , style = textFieldLabelStyle )
+      textField ( value , disabled = true )
+    }
+  }
+  control showTextField ( name : String , value : String ) {
+    item {
+      label ( name , style = textFieldLabelStyle )
+      textField ( value )
+    }
+  }
+  control showBoolField ( name : String , value : Bool ) {
+    item {
+      label ( name , style = textFieldLabelStyle )
+      checkBox ( value )
+    }
+  }
+  control showNumField ( name : String , value : Num ) {
+    item {
+      label ( name , style = textFieldLabelStyle )
+      numField ( value )
+    }
+  }
+  control showDateTimeField ( name : String , value : DateTime ) {
+    item {
+      label ( name , style = textFieldLabelStyle )
+      dateTimePicker ( value )
+    }
+  }
+  control showTimeField ( name : String , value : DateTime ) {
+    item {
+      label ( name , style = textFieldLabelStyle )
+      timePicker ( value )
+    }
+  }
+  control showDateField ( name : String , value : DateTime ) {
+    item {
+      label ( name , style = textFieldLabelStyle )
+      datePicker ( value )
+    }
+  }
+  control showEntityField ( name : String , value : Entity < ? > , viewer : Control1 < Entity < ? > > ) {
+    when ( value ) {
+      item ( onclick = { showControl(viewer,value); } ) {
+        label ( name )
+      }
+    }
+  }
+  control showEntitiesField ( name : String , values : Collection < Entity < ? > > , viewer : Control1 < Entity < ? > > ) {
+    when ( values ) {
+      item ( onclick = { showControlList(showEntitiesList,name,values,viewer); } ) {
+        label ( name )
+      }
+    }
+  }
+  control showEntitiesList ( headerName : String , values : Collection < Entity < ? > > , viewer : Control1 < Entity < ? > > ) {
+    header ( headerName ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    list ( value in values ) {
+      item ( onclick = { showControl(viewer,value); } ) {
+        label ( value . id )
+      }
+    }
+  }
+  <javascript>
+  __ns.back = function(callback) {
+                history.back();
+                callback();
+              };
+  </javascript>
+  external function back ( ) : void
+  screen showObjectEmptyScreen ( type : String , id : String , entityCTRL : Control2 < String , String > ) {
+    entityCTRL ( type , id )
+  }
+  style customWarningItemStyle {
+    itemMixin ( #000 , #ff5 ) ;
+  }
+  style customErrorItemStyle {
+    itemMixin ( #000 , #f11 ) ;
+  }
+  control SimpleErrorViewControl ( errorTuple : Tuple2 < JSON , Control2 < String , String > > ) {
+    when ( errorTuple . _1 . id ) {
+      item {
+        label ( errorTuple . _1 . ent + " : " + errorTuple . _1 . id )
+      }
+    }
+    else {
+    item {
+      label ( errorTuple . _1 . message )
+    }
+    }
+  }
+  control DetailErrorViewControl ( errorTuple : Tuple2 < JSON , Control2 < String , String > > ) {
+    when ( errorTuple . _1 . id ) {
+      item {
+        label ( errorTuple . _1 . ent + " : " + errorTuple . _1 . id )
+      }
+      when ( errorTuple . _2 != null ) {
+        item ( onclick = { showObjectEmptyScreen(errorTuple._1.ent,errorTuple._1.id,errorTuple._2); } ) {
+          label ( "Show Object" )
+        }
+      }
+      list ( error in errorTuple . _1 . errors ) {
+        when ( error . type == "warning" ) {
+          item ( style = customWarningItemStyle ) {
+            label ( error . message )
+          }
+        }
+        when ( error . type == "error" ) {
+          item ( style = customErrorItemStyle ) {
+            label ( error . message )
+          }
+        }
+      }
+    }
+    else {
+    item {
+      label ( errorTuple . _1 . message )
+    }
+    }
+  }
+  control showErrors ( errors : JSON , detailview : Control2 < String , String > = showObject , ignoreFunction : Function1 < JSON , void > ) {
+    header ( "Errors" ) {
+      backButton ( "back" , onclick = { back(); } )
+      button ( "ignore" , onclick = { back(); ignoreFunction(errors); } )
+    }
+    var collection = Collection < Tuple2 < JSON , Control2 < String , String > > > ( )
+    script {
+      foreach ( error in errors ) {
+        collection . add ( ( error , detailview ) );
+      }
+    }
+    zoomList ( collection , SimpleErrorViewControl , DetailErrorViewControl )
+  }
+  screen showErrorsEmptyScreen ( errors : JSON , ctrl : Control2 < JSON , ? > , detailCTRL : Control2 < String , String > , continueFunction : Function1 < JSON , void > ) {
+    ctrl ( errors , detailCTRL , continueFunction )
+  }
+  control showASimple ( ent : A ) {
+    header ( "A" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showBSimple )
+      showTextField ( "name" , ent . name )
+      showNumField ( "lastSynced" , ent . lastSynced )
+      showBoolField ( "sync" , ent . sync )
+    }
+  }
+  control showBSimple ( ent : B ) {
+    header ( "B" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showCSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showCSimple ( ent : C ) {
+    header ( "C" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showDSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showDSimple ( ent : D ) {
+    header ( "D" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showESimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showESimple ( ent : E ) {
+    header ( "E" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showFSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showFSimple ( ent : F ) {
+    header ( "F" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showGSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showGSimple ( ent : G ) {
+    header ( "G" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showHSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showHSimple ( ent : H ) {
+    header ( "H" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showISimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showISimple ( ent : I ) {
+    header ( "I" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showJSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showJSimple ( ent : J ) {
+    header ( "J" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showKSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showKSimple ( ent : K ) {
+    header ( "K" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showLSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showLSimple ( ent : L ) {
+    header ( "L" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showMSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showMSimple ( ent : M ) {
+    header ( "M" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showNSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showNSimple ( ent : N ) {
+    header ( "N" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showOSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showOSimple ( ent : O ) {
+    header ( "O" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showPSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showPSimple ( ent : P ) {
+    header ( "P" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showQSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showQSimple ( ent : Q ) {
+    header ( "Q" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showRSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showRSimple ( ent : R ) {
+    header ( "R" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showSSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showSSimple ( ent : S ) {
+    header ( "S" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showTSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showTSimple ( ent : T ) {
+    header ( "T" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showUSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showUSimple ( ent : U ) {
+    header ( "U" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showVSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showVSimple ( ent : V ) {
+    header ( "V" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showWSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showWSimple ( ent : W ) {
+    header ( "W" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showXSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showXSimple ( ent : X ) {
+    header ( "X" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showYSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showYSimple ( ent : Y ) {
+    header ( "Y" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showZSimple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showZSimple ( ent : Z ) {
+    header ( "Z" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showA1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showA1Simple ( ent : A1 ) {
+    header ( "A1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showB1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showB1Simple ( ent : B1 ) {
+    header ( "B1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showC1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showC1Simple ( ent : C1 ) {
+    header ( "C1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showD1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showD1Simple ( ent : D1 ) {
+    header ( "D1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showE1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showE1Simple ( ent : E1 ) {
+    header ( "E1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showF1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showF1Simple ( ent : F1 ) {
+    header ( "F1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showG1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showG1Simple ( ent : G1 ) {
+    header ( "G1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showH1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showH1Simple ( ent : H1 ) {
+    header ( "H1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showI1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showI1Simple ( ent : I1 ) {
+    header ( "I1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showJ1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showJ1Simple ( ent : J1 ) {
+    header ( "J1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showK1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showK1Simple ( ent : K1 ) {
+    header ( "K1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showL1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showL1Simple ( ent : L1 ) {
+    header ( "L1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showM1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showM1Simple ( ent : M1 ) {
+    header ( "M1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showN1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showN1Simple ( ent : N1 ) {
+    header ( "N1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showO1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showO1Simple ( ent : O1 ) {
+    header ( "O1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showP1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showP1Simple ( ent : P1 ) {
+    header ( "P1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showQ1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showQ1Simple ( ent : Q1 ) {
+    header ( "Q1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showR1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showR1Simple ( ent : R1 ) {
+    header ( "R1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showS1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showS1Simple ( ent : S1 ) {
+    header ( "S1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showT1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showT1Simple ( ent : T1 ) {
+    header ( "T1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showU1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showU1Simple ( ent : U1 ) {
+    header ( "U1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showV1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showV1Simple ( ent : V1 ) {
+    header ( "V1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showW1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showW1Simple ( ent : W1 ) {
+    header ( "W1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showX1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showX1Simple ( ent : X1 ) {
+    header ( "X1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showY1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showY1Simple ( ent : Y1 ) {
+    header ( "Y1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showZ1Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showZ1Simple ( ent : Z1 ) {
+    header ( "Z1" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showA2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showA2Simple ( ent : A2 ) {
+    header ( "A2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showB2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showB2Simple ( ent : B2 ) {
+    header ( "B2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showC2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showC2Simple ( ent : C2 ) {
+    header ( "C2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showD2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showD2Simple ( ent : D2 ) {
+    header ( "D2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showE2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showE2Simple ( ent : E2 ) {
+    header ( "E2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showF2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showF2Simple ( ent : F2 ) {
+    header ( "F2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showG2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showG2Simple ( ent : G2 ) {
+    header ( "G2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showH2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showH2Simple ( ent : H2 ) {
+    header ( "H2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showI2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showI2Simple ( ent : I2 ) {
+    header ( "I2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showJ2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showJ2Simple ( ent : J2 ) {
+    header ( "J2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showK2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showK2Simple ( ent : K2 ) {
+    header ( "K2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showL2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showL2Simple ( ent : L2 ) {
+    header ( "L2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showM2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showM2Simple ( ent : M2 ) {
+    header ( "M2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showN2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showN2Simple ( ent : N2 ) {
+    header ( "N2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showO2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showO2Simple ( ent : O2 ) {
+    header ( "O2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showP2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showP2Simple ( ent : P2 ) {
+    header ( "P2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showQ2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showQ2Simple ( ent : Q2 ) {
+    header ( "Q2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showR2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showR2Simple ( ent : R2 ) {
+    header ( "R2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showS2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showS2Simple ( ent : S2 ) {
+    header ( "S2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showT2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showT2Simple ( ent : T2 ) {
+    header ( "T2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showU2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showU2Simple ( ent : U2 ) {
+    header ( "U2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showV2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showV2Simple ( ent : V2 ) {
+    header ( "V2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showW2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showW2Simple ( ent : W2 ) {
+    header ( "W2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showX2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showX2Simple ( ent : X2 ) {
+    header ( "X2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showY2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showY2Simple ( ent : Y2 ) {
+    header ( "Y2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showZ2Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showZ2Simple ( ent : Z2 ) {
+    header ( "Z2" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showA3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showA3Simple ( ent : A3 ) {
+    header ( "A3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showB3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showB3Simple ( ent : B3 ) {
+    header ( "B3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showC3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showC3Simple ( ent : C3 ) {
+    header ( "C3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showD3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showD3Simple ( ent : D3 ) {
+    header ( "D3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showE3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showE3Simple ( ent : E3 ) {
+    header ( "E3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showF3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showF3Simple ( ent : F3 ) {
+    header ( "F3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showG3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showG3Simple ( ent : G3 ) {
+    header ( "G3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showH3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showH3Simple ( ent : H3 ) {
+    header ( "H3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showI3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showI3Simple ( ent : I3 ) {
+    header ( "I3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showJ3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showJ3Simple ( ent : J3 ) {
+    header ( "J3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showK3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showK3Simple ( ent : K3 ) {
+    header ( "K3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showL3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showL3Simple ( ent : L3 ) {
+    header ( "L3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showM3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showM3Simple ( ent : M3 ) {
+    header ( "M3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showN3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showN3Simple ( ent : N3 ) {
+    header ( "N3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showO3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showO3Simple ( ent : O3 ) {
+    header ( "O3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showP3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showP3Simple ( ent : P3 ) {
+    header ( "P3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showQ3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showQ3Simple ( ent : Q3 ) {
+    header ( "Q3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showR3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showR3Simple ( ent : R3 ) {
+    header ( "R3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showS3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showS3Simple ( ent : S3 ) {
+    header ( "S3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showT3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showT3Simple ( ent : T3 ) {
+    header ( "T3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showU3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showU3Simple ( ent : U3 ) {
+    header ( "U3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showV3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showV3Simple ( ent : V3 ) {
+    header ( "V3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showW3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showW3Simple ( ent : W3 ) {
+    header ( "W3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showX3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showX3Simple ( ent : X3 ) {
+    header ( "X3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showY3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showY3Simple ( ent : Y3 ) {
+    header ( "Y3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showZ3Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showZ3Simple ( ent : Z3 ) {
+    header ( "Z3" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showA4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showA4Simple ( ent : A4 ) {
+    header ( "A4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showB4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showB4Simple ( ent : B4 ) {
+    header ( "B4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showC4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showC4Simple ( ent : C4 ) {
+    header ( "C4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showD4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showD4Simple ( ent : D4 ) {
+    header ( "D4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showE4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showE4Simple ( ent : E4 ) {
+    header ( "E4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showF4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showF4Simple ( ent : F4 ) {
+    header ( "F4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showG4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showG4Simple ( ent : G4 ) {
+    header ( "G4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showH4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showH4Simple ( ent : H4 ) {
+    header ( "H4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showI4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showI4Simple ( ent : I4 ) {
+    header ( "I4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showJ4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showJ4Simple ( ent : J4 ) {
+    header ( "J4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showK4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showK4Simple ( ent : K4 ) {
+    header ( "K4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showL4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showL4Simple ( ent : L4 ) {
+    header ( "L4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showM4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showM4Simple ( ent : M4 ) {
+    header ( "M4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showN4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showN4Simple ( ent : N4 ) {
+    header ( "N4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showO4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showO4Simple ( ent : O4 ) {
+    header ( "O4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showP4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showP4Simple ( ent : P4 ) {
+    header ( "P4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showQ4Simple )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  control showQ4Simple ( ent : Q4 ) {
+    header ( "Q4" ) {
+      backButton ( "back" , onclick = { back(); } )
+    }
+    group {
+      showTextField ( "id" , ent . id )
+      showNumField ( "version" , ent . version )
+      showTextField ( "name" , ent . name )
+    }
+  }
+  screen syncSimpleView ( ) {
+    header ( "Sync Entities" ) {
+      backButton ( "back" )
+    }
+    tabSet ( [ ( "A" , "" , syncSimpleView_A ) ] )
+  }
+  control syncSimpleView_A ( ) {
+    var phrase = ""
+    searchBox ( phrase )
+    list ( ent in A . searchPrefix ( phrase ) . order ( "name" , true ) ) {
+      item {
+        checkBox ( ent . sync , label = ent . name )
+      }
+    }
+  }
+  control showObject ( type : String , id : String ) {
+    when ( type == "A" ) {
+      showASimple ( A . load ( id ) )
+    }
+    when ( type == "B" ) {
+      showBSimple ( B . load ( id ) )
+    }
+    when ( type == "C" ) {
+      showCSimple ( C . load ( id ) )
+    }
+    when ( type == "D" ) {
+      showDSimple ( D . load ( id ) )
+    }
+    when ( type == "E" ) {
+      showESimple ( E . load ( id ) )
+    }
+    when ( type == "F" ) {
+      showFSimple ( F . load ( id ) )
+    }
+    when ( type == "G" ) {
+      showGSimple ( G . load ( id ) )
+    }
+    when ( type == "H" ) {
+      showHSimple ( H . load ( id ) )
+    }
+    when ( type == "I" ) {
+      showISimple ( I . load ( id ) )
+    }
+    when ( type == "J" ) {
+      showJSimple ( J . load ( id ) )
+    }
+    when ( type == "K" ) {
+      showKSimple ( K . load ( id ) )
+    }
+    when ( type == "L" ) {
+      showLSimple ( L . load ( id ) )
+    }
+    when ( type == "M" ) {
+      showMSimple ( M . load ( id ) )
+    }
+    when ( type == "N" ) {
+      showNSimple ( N . load ( id ) )
+    }
+    when ( type == "O" ) {
+      showOSimple ( O . load ( id ) )
+    }
+    when ( type == "P" ) {
+      showPSimple ( P . load ( id ) )
+    }
+    when ( type == "Q" ) {
+      showQSimple ( Q . load ( id ) )
+    }
+    when ( type == "R" ) {
+      showRSimple ( R . load ( id ) )
+    }
+    when ( type == "S" ) {
+      showSSimple ( S . load ( id ) )
+    }
+    when ( type == "T" ) {
+      showTSimple ( T . load ( id ) )
+    }
+    when ( type == "U" ) {
+      showUSimple ( U . load ( id ) )
+    }
+    when ( type == "V" ) {
+      showVSimple ( V . load ( id ) )
+    }
+    when ( type == "W" ) {
+      showWSimple ( W . load ( id ) )
+    }
+    when ( type == "X" ) {
+      showXSimple ( X . load ( id ) )
+    }
+    when ( type == "Y" ) {
+      showYSimple ( Y . load ( id ) )
+    }
+    when ( type == "Z" ) {
+      showZSimple ( Z . load ( id ) )
+    }
+    when ( type == "A1" ) {
+      showA1Simple ( A1 . load ( id ) )
+    }
+    when ( type == "B1" ) {
+      showB1Simple ( B1 . load ( id ) )
+    }
+    when ( type == "C1" ) {
+      showC1Simple ( C1 . load ( id ) )
+    }
+    when ( type == "D1" ) {
+      showD1Simple ( D1 . load ( id ) )
+    }
+    when ( type == "E1" ) {
+      showE1Simple ( E1 . load ( id ) )
+    }
+    when ( type == "F1" ) {
+      showF1Simple ( F1 . load ( id ) )
+    }
+    when ( type == "G1" ) {
+      showG1Simple ( G1 . load ( id ) )
+    }
+    when ( type == "H1" ) {
+      showH1Simple ( H1 . load ( id ) )
+    }
+    when ( type == "I1" ) {
+      showI1Simple ( I1 . load ( id ) )
+    }
+    when ( type == "J1" ) {
+      showJ1Simple ( J1 . load ( id ) )
+    }
+    when ( type == "K1" ) {
+      showK1Simple ( K1 . load ( id ) )
+    }
+    when ( type == "L1" ) {
+      showL1Simple ( L1 . load ( id ) )
+    }
+    when ( type == "M1" ) {
+      showM1Simple ( M1 . load ( id ) )
+    }
+    when ( type == "N1" ) {
+      showN1Simple ( N1 . load ( id ) )
+    }
+    when ( type == "O1" ) {
+      showO1Simple ( O1 . load ( id ) )
+    }
+    when ( type == "P1" ) {
+      showP1Simple ( P1 . load ( id ) )
+    }
+    when ( type == "Q1" ) {
+      showQ1Simple ( Q1 . load ( id ) )
+    }
+    when ( type == "R1" ) {
+      showR1Simple ( R1 . load ( id ) )
+    }
+    when ( type == "S1" ) {
+      showS1Simple ( S1 . load ( id ) )
+    }
+    when ( type == "T1" ) {
+      showT1Simple ( T1 . load ( id ) )
+    }
+    when ( type == "U1" ) {
+      showU1Simple ( U1 . load ( id ) )
+    }
+    when ( type == "V1" ) {
+      showV1Simple ( V1 . load ( id ) )
+    }
+    when ( type == "W1" ) {
+      showW1Simple ( W1 . load ( id ) )
+    }
+    when ( type == "X1" ) {
+      showX1Simple ( X1 . load ( id ) )
+    }
+    when ( type == "Y1" ) {
+      showY1Simple ( Y1 . load ( id ) )
+    }
+    when ( type == "Z1" ) {
+      showZ1Simple ( Z1 . load ( id ) )
+    }
+    when ( type == "A2" ) {
+      showA2Simple ( A2 . load ( id ) )
+    }
+    when ( type == "B2" ) {
+      showB2Simple ( B2 . load ( id ) )
+    }
+    when ( type == "C2" ) {
+      showC2Simple ( C2 . load ( id ) )
+    }
+    when ( type == "D2" ) {
+      showD2Simple ( D2 . load ( id ) )
+    }
+    when ( type == "E2" ) {
+      showE2Simple ( E2 . load ( id ) )
+    }
+    when ( type == "F2" ) {
+      showF2Simple ( F2 . load ( id ) )
+    }
+    when ( type == "G2" ) {
+      showG2Simple ( G2 . load ( id ) )
+    }
+    when ( type == "H2" ) {
+      showH2Simple ( H2 . load ( id ) )
+    }
+    when ( type == "I2" ) {
+      showI2Simple ( I2 . load ( id ) )
+    }
+    when ( type == "J2" ) {
+      showJ2Simple ( J2 . load ( id ) )
+    }
+    when ( type == "K2" ) {
+      showK2Simple ( K2 . load ( id ) )
+    }
+    when ( type == "L2" ) {
+      showL2Simple ( L2 . load ( id ) )
+    }
+    when ( type == "M2" ) {
+      showM2Simple ( M2 . load ( id ) )
+    }
+    when ( type == "N2" ) {
+      showN2Simple ( N2 . load ( id ) )
+    }
+    when ( type == "O2" ) {
+      showO2Simple ( O2 . load ( id ) )
+    }
+    when ( type == "P2" ) {
+      showP2Simple ( P2 . load ( id ) )
+    }
+    when ( type == "Q2" ) {
+      showQ2Simple ( Q2 . load ( id ) )
+    }
+    when ( type == "R2" ) {
+      showR2Simple ( R2 . load ( id ) )
+    }
+    when ( type == "S2" ) {
+      showS2Simple ( S2 . load ( id ) )
+    }
+    when ( type == "T2" ) {
+      showT2Simple ( T2 . load ( id ) )
+    }
+    when ( type == "U2" ) {
+      showU2Simple ( U2 . load ( id ) )
+    }
+    when ( type == "V2" ) {
+      showV2Simple ( V2 . load ( id ) )
+    }
+    when ( type == "W2" ) {
+      showW2Simple ( W2 . load ( id ) )
+    }
+    when ( type == "X2" ) {
+      showX2Simple ( X2 . load ( id ) )
+    }
+    when ( type == "Y2" ) {
+      showY2Simple ( Y2 . load ( id ) )
+    }
+    when ( type == "Z2" ) {
+      showZ2Simple ( Z2 . load ( id ) )
+    }
+    when ( type == "A3" ) {
+      showA3Simple ( A3 . load ( id ) )
+    }
+    when ( type == "B3" ) {
+      showB3Simple ( B3 . load ( id ) )
+    }
+    when ( type == "C3" ) {
+      showC3Simple ( C3 . load ( id ) )
+    }
+    when ( type == "D3" ) {
+      showD3Simple ( D3 . load ( id ) )
+    }
+    when ( type == "E3" ) {
+      showE3Simple ( E3 . load ( id ) )
+    }
+    when ( type == "F3" ) {
+      showF3Simple ( F3 . load ( id ) )
+    }
+    when ( type == "G3" ) {
+      showG3Simple ( G3 . load ( id ) )
+    }
+    when ( type == "H3" ) {
+      showH3Simple ( H3 . load ( id ) )
+    }
+    when ( type == "I3" ) {
+      showI3Simple ( I3 . load ( id ) )
+    }
+    when ( type == "J3" ) {
+      showJ3Simple ( J3 . load ( id ) )
+    }
+    when ( type == "K3" ) {
+      showK3Simple ( K3 . load ( id ) )
+    }
+    when ( type == "L3" ) {
+      showL3Simple ( L3 . load ( id ) )
+    }
+    when ( type == "M3" ) {
+      showM3Simple ( M3 . load ( id ) )
+    }
+    when ( type == "N3" ) {
+      showN3Simple ( N3 . load ( id ) )
+    }
+    when ( type == "O3" ) {
+      showO3Simple ( O3 . load ( id ) )
+    }
+    when ( type == "P3" ) {
+      showP3Simple ( P3 . load ( id ) )
+    }
+    when ( type == "Q3" ) {
+      showQ3Simple ( Q3 . load ( id ) )
+    }
+    when ( type == "R3" ) {
+      showR3Simple ( R3 . load ( id ) )
+    }
+    when ( type == "S3" ) {
+      showS3Simple ( S3 . load ( id ) )
+    }
+    when ( type == "T3" ) {
+      showT3Simple ( T3 . load ( id ) )
+    }
+    when ( type == "U3" ) {
+      showU3Simple ( U3 . load ( id ) )
+    }
+    when ( type == "V3" ) {
+      showV3Simple ( V3 . load ( id ) )
+    }
+    when ( type == "W3" ) {
+      showW3Simple ( W3 . load ( id ) )
+    }
+    when ( type == "X3" ) {
+      showX3Simple ( X3 . load ( id ) )
+    }
+    when ( type == "Y3" ) {
+      showY3Simple ( Y3 . load ( id ) )
+    }
+    when ( type == "Z3" ) {
+      showZ3Simple ( Z3 . load ( id ) )
+    }
+    when ( type == "A4" ) {
+      showA4Simple ( A4 . load ( id ) )
+    }
+    when ( type == "B4" ) {
+      showB4Simple ( B4 . load ( id ) )
+    }
+    when ( type == "C4" ) {
+      showC4Simple ( C4 . load ( id ) )
+    }
+    when ( type == "D4" ) {
+      showD4Simple ( D4 . load ( id ) )
+    }
+    when ( type == "E4" ) {
+      showE4Simple ( E4 . load ( id ) )
+    }
+    when ( type == "F4" ) {
+      showF4Simple ( F4 . load ( id ) )
+    }
+    when ( type == "G4" ) {
+      showG4Simple ( G4 . load ( id ) )
+    }
+    when ( type == "H4" ) {
+      showH4Simple ( H4 . load ( id ) )
+    }
+    when ( type == "I4" ) {
+      showI4Simple ( I4 . load ( id ) )
+    }
+    when ( type == "J4" ) {
+      showJ4Simple ( J4 . load ( id ) )
+    }
+    when ( type == "K4" ) {
+      showK4Simple ( K4 . load ( id ) )
+    }
+    when ( type == "L4" ) {
+      showL4Simple ( L4 . load ( id ) )
+    }
+    when ( type == "M4" ) {
+      showM4Simple ( M4 . load ( id ) )
+    }
+    when ( type == "N4" ) {
+      showN4Simple ( N4 . load ( id ) )
+    }
+    when ( type == "O4" ) {
+      showO4Simple ( O4 . load ( id ) )
+    }
+    when ( type == "P4" ) {
+      showP4Simple ( P4 . load ( id ) )
+    }
+    when ( type == "Q4" ) {
+      showQ4Simple ( Q4 . load ( id ) )
+    }
+  }

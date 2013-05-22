@@ -1,0 +1,1489 @@
+module webservices::mobl::mapper
+  function AMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        A . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function BMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        B . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function CMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        C . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function DMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        D . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function EMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        E . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function FMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        F . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function GMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        G . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function HMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        H . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function IMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        I . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function JMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        J . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function KMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        K . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function LMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        L . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function MMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        M . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function NMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        N . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function OMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        O . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function PMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        P . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function QMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Q . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function RMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        R . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function SMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        S . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function TMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        T . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function UMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        U . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function VMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        V . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function WMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        W . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function XMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        X . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function YMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Y . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function ZMapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Z . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function A1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        A1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function B1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        B1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function C1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        C1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function D1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        D1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function E1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        E1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function F1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        F1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function G1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        G1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function H1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        H1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function I1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        I1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function J1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        J1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function K1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        K1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function L1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        L1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function M1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        M1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function N1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        N1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function O1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        O1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function P1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        P1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Q1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Q1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function R1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        R1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function S1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        S1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function T1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        T1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function U1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        U1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function V1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        V1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function W1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        W1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function X1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        X1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Y1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Y1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Z1Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Z1 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function A2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        A2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function B2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        B2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function C2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        C2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function D2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        D2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function E2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        E2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function F2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        F2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function G2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        G2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function H2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        H2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function I2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        I2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function J2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        J2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function K2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        K2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function L2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        L2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function M2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        M2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function N2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        N2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function O2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        O2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function P2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        P2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Q2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Q2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function R2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        R2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function S2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        S2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function T2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        T2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function U2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        U2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function V2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        V2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function W2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        W2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function X2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        X2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Y2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Y2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Z2Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Z2 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function A3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        A3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function B3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        B3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function C3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        C3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function D3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        D3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function E3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        E3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function F3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        F3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function G3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        G3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function H3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        H3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function I3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        I3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function J3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        J3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function K3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        K3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function L3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        L3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function M3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        M3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function N3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        N3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function O3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        O3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function P3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        P3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Q3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Q3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function R3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        R3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function S3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        S3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function T3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        T3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function U3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        U3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function V3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        V3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function W3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        W3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function X3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        X3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Y3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Y3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Z3Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Z3 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function A4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        A4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function B4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        B4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function C4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        C4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function D4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        D4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function E4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        E4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function F4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        F4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function G4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        G4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function H4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        H4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function I4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        I4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function J4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        J4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function K4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        K4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function L4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        L4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function M4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        M4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function N4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        N4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function O4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        O4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function P4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        P4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function Q4Mapper ( json : JSON ) {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      foreach ( ent : JSON in json . result ) {
+        Q4 . fromSelectJSON ( ent );
+      }
+    }
+  }
+  function timeStampMapper ( json : JSON ) : Num {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+    else
+    {
+      return json . result;
+    }
+  }
+  function voidMapper ( json : JSON ) : void {
+    if ( json . errors && json . errors . length > 0 )
+    {
+      log(json.errors);
+    }
+  }
+  function errorMapper ( json : JSON ) : JSON {
+    if ( json . errors )
+    {
+      return json . errors;
+    }
+  }
+  import webservices :: mobl :: model
+  function TopLevelEntities_Mapper ( json : JSON ) {
+    foreach ( topent : JSON in json . result ) {
+      if ( topent . name == "A" )
+      {
+        foreach ( ent : JSON in topent . value ) {
+          if ( ! A . load ( ent . id ) )
+          {
+            A . fromSelectJSON ( ent );
+          }
+        }
+      }
+    }
+  }

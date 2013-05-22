@@ -1,0 +1,727 @@
+module webservices::mobl::model
+  entity A {
+    version : Num
+    list : Collection < B > ( inverse : generatedPropertyForInverse_A_list )
+    name : String
+    lastSynced : Num
+    sync : Bool
+  }
+  entity B {
+    version : Num
+    list : Collection < C > ( inverse : generatedPropertyForInverse_B_list )
+    name : String
+    generatedPropertyForInverse_A_list : Collection < A > ( inverse : list )
+  }
+  entity C {
+    version : Num
+    list : Collection < D > ( inverse : generatedPropertyForInverse_C_list )
+    name : String
+    generatedPropertyForInverse_B_list : Collection < B > ( inverse : list )
+  }
+  entity D {
+    version : Num
+    list : Collection < E > ( inverse : generatedPropertyForInverse_D_list )
+    name : String
+    generatedPropertyForInverse_C_list : Collection < C > ( inverse : list )
+  }
+  entity E {
+    version : Num
+    list : Collection < F > ( inverse : generatedPropertyForInverse_E_list )
+    name : String
+    generatedPropertyForInverse_D_list : Collection < D > ( inverse : list )
+  }
+  entity F {
+    version : Num
+    list : Collection < G > ( inverse : generatedPropertyForInverse_F_list )
+    name : String
+    generatedPropertyForInverse_E_list : Collection < E > ( inverse : list )
+  }
+  entity G {
+    version : Num
+    list : Collection < H > ( inverse : generatedPropertyForInverse_G_list )
+    name : String
+    generatedPropertyForInverse_F_list : Collection < F > ( inverse : list )
+  }
+  entity H {
+    version : Num
+    list : Collection < I > ( inverse : generatedPropertyForInverse_H_list )
+    name : String
+    generatedPropertyForInverse_G_list : Collection < G > ( inverse : list )
+  }
+  entity I {
+    version : Num
+    list : Collection < J > ( inverse : generatedPropertyForInverse_I_list )
+    name : String
+    generatedPropertyForInverse_H_list : Collection < H > ( inverse : list )
+  }
+  entity J {
+    version : Num
+    list : Collection < K > ( inverse : generatedPropertyForInverse_J_list )
+    name : String
+    generatedPropertyForInverse_I_list : Collection < I > ( inverse : list )
+  }
+  entity K {
+    version : Num
+    list : Collection < L > ( inverse : generatedPropertyForInverse_K_list )
+    name : String
+    generatedPropertyForInverse_J_list : Collection < J > ( inverse : list )
+  }
+  entity L {
+    version : Num
+    list : Collection < M > ( inverse : generatedPropertyForInverse_L_list )
+    name : String
+    generatedPropertyForInverse_K_list : Collection < K > ( inverse : list )
+  }
+  entity M {
+    version : Num
+    list : Collection < N > ( inverse : generatedPropertyForInverse_M_list )
+    name : String
+    generatedPropertyForInverse_L_list : Collection < L > ( inverse : list )
+  }
+  entity N {
+    version : Num
+    list : Collection < O > ( inverse : generatedPropertyForInverse_N_list )
+    name : String
+    generatedPropertyForInverse_M_list : Collection < M > ( inverse : list )
+  }
+  entity O {
+    version : Num
+    list : Collection < P > ( inverse : generatedPropertyForInverse_O_list )
+    name : String
+    generatedPropertyForInverse_N_list : Collection < N > ( inverse : list )
+  }
+  entity P {
+    version : Num
+    list : Collection < Q > ( inverse : generatedPropertyForInverse_P_list )
+    name : String
+    generatedPropertyForInverse_O_list : Collection < O > ( inverse : list )
+  }
+  entity Q {
+    version : Num
+    list : Collection < R > ( inverse : generatedPropertyForInverse_Q_list )
+    name : String
+    generatedPropertyForInverse_P_list : Collection < P > ( inverse : list )
+  }
+  entity R {
+    version : Num
+    list : Collection < S > ( inverse : generatedPropertyForInverse_R_list )
+    name : String
+    generatedPropertyForInverse_Q_list : Collection < Q > ( inverse : list )
+  }
+  entity S {
+    version : Num
+    list : Collection < T > ( inverse : generatedPropertyForInverse_S_list )
+    name : String
+    generatedPropertyForInverse_R_list : Collection < R > ( inverse : list )
+  }
+  entity T {
+    version : Num
+    list : Collection < U > ( inverse : generatedPropertyForInverse_T_list )
+    name : String
+    generatedPropertyForInverse_S_list : Collection < S > ( inverse : list )
+  }
+  entity U {
+    version : Num
+    list : Collection < V > ( inverse : generatedPropertyForInverse_U_list )
+    name : String
+    generatedPropertyForInverse_T_list : Collection < T > ( inverse : list )
+  }
+  entity V {
+    version : Num
+    list : Collection < W > ( inverse : generatedPropertyForInverse_V_list )
+    name : String
+    generatedPropertyForInverse_U_list : Collection < U > ( inverse : list )
+  }
+  entity W {
+    version : Num
+    list : Collection < X > ( inverse : generatedPropertyForInverse_W_list )
+    name : String
+    generatedPropertyForInverse_V_list : Collection < V > ( inverse : list )
+  }
+  entity X {
+    version : Num
+    list : Collection < Y > ( inverse : generatedPropertyForInverse_X_list )
+    name : String
+    generatedPropertyForInverse_W_list : Collection < W > ( inverse : list )
+  }
+  entity Y {
+    version : Num
+    list : Collection < Z > ( inverse : generatedPropertyForInverse_Y_list )
+    name : String
+    generatedPropertyForInverse_X_list : Collection < X > ( inverse : list )
+  }
+  entity Z {
+    version : Num
+    list : Collection < A1 > ( inverse : generatedPropertyForInverse_Z_list )
+    name : String
+    generatedPropertyForInverse_Y_list : Collection < Y > ( inverse : list )
+  }
+  entity A1 {
+    version : Num
+    list : Collection < B1 > ( inverse : generatedPropertyForInverse_A1_list )
+    name : String
+    generatedPropertyForInverse_Z_list : Collection < Z > ( inverse : list )
+  }
+  entity B1 {
+    version : Num
+    list : Collection < C1 > ( inverse : generatedPropertyForInverse_B1_list )
+    name : String
+    generatedPropertyForInverse_A1_list : Collection < A1 > ( inverse : list )
+  }
+  entity C1 {
+    version : Num
+    list : Collection < D1 > ( inverse : generatedPropertyForInverse_C1_list )
+    name : String
+    generatedPropertyForInverse_B1_list : Collection < B1 > ( inverse : list )
+  }
+  entity D1 {
+    version : Num
+    list : Collection < E1 > ( inverse : generatedPropertyForInverse_D1_list )
+    name : String
+    generatedPropertyForInverse_C1_list : Collection < C1 > ( inverse : list )
+  }
+  entity E1 {
+    version : Num
+    list : Collection < F1 > ( inverse : generatedPropertyForInverse_E1_list )
+    name : String
+    generatedPropertyForInverse_D1_list : Collection < D1 > ( inverse : list )
+  }
+  entity F1 {
+    version : Num
+    list : Collection < G1 > ( inverse : generatedPropertyForInverse_F1_list )
+    name : String
+    generatedPropertyForInverse_E1_list : Collection < E1 > ( inverse : list )
+  }
+  entity G1 {
+    version : Num
+    list : Collection < H1 > ( inverse : generatedPropertyForInverse_G1_list )
+    name : String
+    generatedPropertyForInverse_F1_list : Collection < F1 > ( inverse : list )
+  }
+  entity H1 {
+    version : Num
+    list : Collection < I1 > ( inverse : generatedPropertyForInverse_H1_list )
+    name : String
+    generatedPropertyForInverse_G1_list : Collection < G1 > ( inverse : list )
+  }
+  entity I1 {
+    version : Num
+    list : Collection < J1 > ( inverse : generatedPropertyForInverse_I1_list )
+    name : String
+    generatedPropertyForInverse_H1_list : Collection < H1 > ( inverse : list )
+  }
+  entity J1 {
+    version : Num
+    list : Collection < K1 > ( inverse : generatedPropertyForInverse_J1_list )
+    name : String
+    generatedPropertyForInverse_I1_list : Collection < I1 > ( inverse : list )
+  }
+  entity K1 {
+    version : Num
+    list : Collection < L1 > ( inverse : generatedPropertyForInverse_K1_list )
+    name : String
+    generatedPropertyForInverse_J1_list : Collection < J1 > ( inverse : list )
+  }
+  entity L1 {
+    version : Num
+    list : Collection < M1 > ( inverse : generatedPropertyForInverse_L1_list )
+    name : String
+    generatedPropertyForInverse_K1_list : Collection < K1 > ( inverse : list )
+  }
+  entity M1 {
+    version : Num
+    list : Collection < N1 > ( inverse : generatedPropertyForInverse_M1_list )
+    name : String
+    generatedPropertyForInverse_L1_list : Collection < L1 > ( inverse : list )
+  }
+  entity N1 {
+    version : Num
+    list : Collection < O1 > ( inverse : generatedPropertyForInverse_N1_list )
+    name : String
+    generatedPropertyForInverse_M1_list : Collection < M1 > ( inverse : list )
+  }
+  entity O1 {
+    version : Num
+    list : Collection < P1 > ( inverse : generatedPropertyForInverse_O1_list )
+    name : String
+    generatedPropertyForInverse_N1_list : Collection < N1 > ( inverse : list )
+  }
+  entity P1 {
+    version : Num
+    list : Collection < Q1 > ( inverse : generatedPropertyForInverse_P1_list )
+    name : String
+    generatedPropertyForInverse_O1_list : Collection < O1 > ( inverse : list )
+  }
+  entity Q1 {
+    version : Num
+    list : Collection < R1 > ( inverse : generatedPropertyForInverse_Q1_list )
+    name : String
+    generatedPropertyForInverse_P1_list : Collection < P1 > ( inverse : list )
+  }
+  entity R1 {
+    version : Num
+    list : Collection < S1 > ( inverse : generatedPropertyForInverse_R1_list )
+    name : String
+    generatedPropertyForInverse_Q1_list : Collection < Q1 > ( inverse : list )
+  }
+  entity S1 {
+    version : Num
+    list : Collection < T1 > ( inverse : generatedPropertyForInverse_S1_list )
+    name : String
+    generatedPropertyForInverse_R1_list : Collection < R1 > ( inverse : list )
+  }
+  entity T1 {
+    version : Num
+    list : Collection < U1 > ( inverse : generatedPropertyForInverse_T1_list )
+    name : String
+    generatedPropertyForInverse_S1_list : Collection < S1 > ( inverse : list )
+  }
+  entity U1 {
+    version : Num
+    list : Collection < V1 > ( inverse : generatedPropertyForInverse_U1_list )
+    name : String
+    generatedPropertyForInverse_T1_list : Collection < T1 > ( inverse : list )
+  }
+  entity V1 {
+    version : Num
+    list : Collection < W1 > ( inverse : generatedPropertyForInverse_V1_list )
+    name : String
+    generatedPropertyForInverse_U1_list : Collection < U1 > ( inverse : list )
+  }
+  entity W1 {
+    version : Num
+    list : Collection < X1 > ( inverse : generatedPropertyForInverse_W1_list )
+    name : String
+    generatedPropertyForInverse_V1_list : Collection < V1 > ( inverse : list )
+  }
+  entity X1 {
+    version : Num
+    list : Collection < Y1 > ( inverse : generatedPropertyForInverse_X1_list )
+    name : String
+    generatedPropertyForInverse_W1_list : Collection < W1 > ( inverse : list )
+  }
+  entity Y1 {
+    version : Num
+    list : Collection < Z1 > ( inverse : generatedPropertyForInverse_Y1_list )
+    name : String
+    generatedPropertyForInverse_X1_list : Collection < X1 > ( inverse : list )
+  }
+  entity Z1 {
+    version : Num
+    list : Collection < A2 > ( inverse : generatedPropertyForInverse_Z1_list )
+    name : String
+    generatedPropertyForInverse_Y1_list : Collection < Y1 > ( inverse : list )
+  }
+  entity A2 {
+    version : Num
+    list : Collection < B2 > ( inverse : generatedPropertyForInverse_A2_list )
+    name : String
+    generatedPropertyForInverse_Z1_list : Collection < Z1 > ( inverse : list )
+  }
+  entity B2 {
+    version : Num
+    list : Collection < C2 > ( inverse : generatedPropertyForInverse_B2_list )
+    name : String
+    generatedPropertyForInverse_A2_list : Collection < A2 > ( inverse : list )
+  }
+  entity C2 {
+    version : Num
+    list : Collection < D2 > ( inverse : generatedPropertyForInverse_C2_list )
+    name : String
+    generatedPropertyForInverse_B2_list : Collection < B2 > ( inverse : list )
+  }
+  entity D2 {
+    version : Num
+    list : Collection < E2 > ( inverse : generatedPropertyForInverse_D2_list )
+    name : String
+    generatedPropertyForInverse_C2_list : Collection < C2 > ( inverse : list )
+  }
+  entity E2 {
+    version : Num
+    list : Collection < F2 > ( inverse : generatedPropertyForInverse_E2_list )
+    name : String
+    generatedPropertyForInverse_D2_list : Collection < D2 > ( inverse : list )
+  }
+  entity F2 {
+    version : Num
+    list : Collection < G2 > ( inverse : generatedPropertyForInverse_F2_list )
+    name : String
+    generatedPropertyForInverse_E2_list : Collection < E2 > ( inverse : list )
+  }
+  entity G2 {
+    version : Num
+    list : Collection < H2 > ( inverse : generatedPropertyForInverse_G2_list )
+    name : String
+    generatedPropertyForInverse_F2_list : Collection < F2 > ( inverse : list )
+  }
+  entity H2 {
+    version : Num
+    list : Collection < I2 > ( inverse : generatedPropertyForInverse_H2_list )
+    name : String
+    generatedPropertyForInverse_G2_list : Collection < G2 > ( inverse : list )
+  }
+  entity I2 {
+    version : Num
+    list : Collection < J2 > ( inverse : generatedPropertyForInverse_I2_list )
+    name : String
+    generatedPropertyForInverse_H2_list : Collection < H2 > ( inverse : list )
+  }
+  entity J2 {
+    version : Num
+    list : Collection < K2 > ( inverse : generatedPropertyForInverse_J2_list )
+    name : String
+    generatedPropertyForInverse_I2_list : Collection < I2 > ( inverse : list )
+  }
+  entity K2 {
+    version : Num
+    list : Collection < L2 > ( inverse : generatedPropertyForInverse_K2_list )
+    name : String
+    generatedPropertyForInverse_J2_list : Collection < J2 > ( inverse : list )
+  }
+  entity L2 {
+    version : Num
+    list : Collection < M2 > ( inverse : generatedPropertyForInverse_L2_list )
+    name : String
+    generatedPropertyForInverse_K2_list : Collection < K2 > ( inverse : list )
+  }
+  entity M2 {
+    version : Num
+    list : Collection < N2 > ( inverse : generatedPropertyForInverse_M2_list )
+    name : String
+    generatedPropertyForInverse_L2_list : Collection < L2 > ( inverse : list )
+  }
+  entity N2 {
+    version : Num
+    list : Collection < O2 > ( inverse : generatedPropertyForInverse_N2_list )
+    name : String
+    generatedPropertyForInverse_M2_list : Collection < M2 > ( inverse : list )
+  }
+  entity O2 {
+    version : Num
+    list : Collection < P2 > ( inverse : generatedPropertyForInverse_O2_list )
+    name : String
+    generatedPropertyForInverse_N2_list : Collection < N2 > ( inverse : list )
+  }
+  entity P2 {
+    version : Num
+    list : Collection < Q2 > ( inverse : generatedPropertyForInverse_P2_list )
+    name : String
+    generatedPropertyForInverse_O2_list : Collection < O2 > ( inverse : list )
+  }
+  entity Q2 {
+    version : Num
+    list : Collection < R2 > ( inverse : generatedPropertyForInverse_Q2_list )
+    name : String
+    generatedPropertyForInverse_P2_list : Collection < P2 > ( inverse : list )
+  }
+  entity R2 {
+    version : Num
+    list : Collection < S2 > ( inverse : generatedPropertyForInverse_R2_list )
+    name : String
+    generatedPropertyForInverse_Q2_list : Collection < Q2 > ( inverse : list )
+  }
+  entity S2 {
+    version : Num
+    list : Collection < T2 > ( inverse : generatedPropertyForInverse_S2_list )
+    name : String
+    generatedPropertyForInverse_R2_list : Collection < R2 > ( inverse : list )
+  }
+  entity T2 {
+    version : Num
+    list : Collection < U2 > ( inverse : generatedPropertyForInverse_T2_list )
+    name : String
+    generatedPropertyForInverse_S2_list : Collection < S2 > ( inverse : list )
+  }
+  entity U2 {
+    version : Num
+    list : Collection < V2 > ( inverse : generatedPropertyForInverse_U2_list )
+    name : String
+    generatedPropertyForInverse_T2_list : Collection < T2 > ( inverse : list )
+  }
+  entity V2 {
+    version : Num
+    list : Collection < W2 > ( inverse : generatedPropertyForInverse_V2_list )
+    name : String
+    generatedPropertyForInverse_U2_list : Collection < U2 > ( inverse : list )
+  }
+  entity W2 {
+    version : Num
+    list : Collection < X2 > ( inverse : generatedPropertyForInverse_W2_list )
+    name : String
+    generatedPropertyForInverse_V2_list : Collection < V2 > ( inverse : list )
+  }
+  entity X2 {
+    version : Num
+    list : Collection < Y2 > ( inverse : generatedPropertyForInverse_X2_list )
+    name : String
+    generatedPropertyForInverse_W2_list : Collection < W2 > ( inverse : list )
+  }
+  entity Y2 {
+    version : Num
+    list : Collection < Z2 > ( inverse : generatedPropertyForInverse_Y2_list )
+    name : String
+    generatedPropertyForInverse_X2_list : Collection < X2 > ( inverse : list )
+  }
+  entity Z2 {
+    version : Num
+    list : Collection < A3 > ( inverse : generatedPropertyForInverse_Z2_list )
+    name : String
+    generatedPropertyForInverse_Y2_list : Collection < Y2 > ( inverse : list )
+  }
+  entity A3 {
+    version : Num
+    list : Collection < B3 > ( inverse : generatedPropertyForInverse_A3_list )
+    name : String
+    generatedPropertyForInverse_Z2_list : Collection < Z2 > ( inverse : list )
+  }
+  entity B3 {
+    version : Num
+    list : Collection < C3 > ( inverse : generatedPropertyForInverse_B3_list )
+    name : String
+    generatedPropertyForInverse_A3_list : Collection < A3 > ( inverse : list )
+  }
+  entity C3 {
+    version : Num
+    list : Collection < D3 > ( inverse : generatedPropertyForInverse_C3_list )
+    name : String
+    generatedPropertyForInverse_B3_list : Collection < B3 > ( inverse : list )
+  }
+  entity D3 {
+    version : Num
+    list : Collection < E3 > ( inverse : generatedPropertyForInverse_D3_list )
+    name : String
+    generatedPropertyForInverse_C3_list : Collection < C3 > ( inverse : list )
+  }
+  entity E3 {
+    version : Num
+    list : Collection < F3 > ( inverse : generatedPropertyForInverse_E3_list )
+    name : String
+    generatedPropertyForInverse_D3_list : Collection < D3 > ( inverse : list )
+  }
+  entity F3 {
+    version : Num
+    list : Collection < G3 > ( inverse : generatedPropertyForInverse_F3_list )
+    name : String
+    generatedPropertyForInverse_E3_list : Collection < E3 > ( inverse : list )
+  }
+  entity G3 {
+    version : Num
+    list : Collection < H3 > ( inverse : generatedPropertyForInverse_G3_list )
+    name : String
+    generatedPropertyForInverse_F3_list : Collection < F3 > ( inverse : list )
+  }
+  entity H3 {
+    version : Num
+    list : Collection < I3 > ( inverse : generatedPropertyForInverse_H3_list )
+    name : String
+    generatedPropertyForInverse_G3_list : Collection < G3 > ( inverse : list )
+  }
+  entity I3 {
+    version : Num
+    list : Collection < J3 > ( inverse : generatedPropertyForInverse_I3_list )
+    name : String
+    generatedPropertyForInverse_H3_list : Collection < H3 > ( inverse : list )
+  }
+  entity J3 {
+    version : Num
+    list : Collection < K3 > ( inverse : generatedPropertyForInverse_J3_list )
+    name : String
+    generatedPropertyForInverse_I3_list : Collection < I3 > ( inverse : list )
+  }
+  entity K3 {
+    version : Num
+    list : Collection < L3 > ( inverse : generatedPropertyForInverse_K3_list )
+    name : String
+    generatedPropertyForInverse_J3_list : Collection < J3 > ( inverse : list )
+  }
+  entity L3 {
+    version : Num
+    list : Collection < M3 > ( inverse : generatedPropertyForInverse_L3_list )
+    name : String
+    generatedPropertyForInverse_K3_list : Collection < K3 > ( inverse : list )
+  }
+  entity M3 {
+    version : Num
+    list : Collection < N3 > ( inverse : generatedPropertyForInverse_M3_list )
+    name : String
+    generatedPropertyForInverse_L3_list : Collection < L3 > ( inverse : list )
+  }
+  entity N3 {
+    version : Num
+    list : Collection < O3 > ( inverse : generatedPropertyForInverse_N3_list )
+    name : String
+    generatedPropertyForInverse_M3_list : Collection < M3 > ( inverse : list )
+  }
+  entity O3 {
+    version : Num
+    list : Collection < P3 > ( inverse : generatedPropertyForInverse_O3_list )
+    name : String
+    generatedPropertyForInverse_N3_list : Collection < N3 > ( inverse : list )
+  }
+  entity P3 {
+    version : Num
+    list : Collection < Q3 > ( inverse : generatedPropertyForInverse_P3_list )
+    name : String
+    generatedPropertyForInverse_O3_list : Collection < O3 > ( inverse : list )
+  }
+  entity Q3 {
+    version : Num
+    list : Collection < R3 > ( inverse : generatedPropertyForInverse_Q3_list )
+    name : String
+    generatedPropertyForInverse_P3_list : Collection < P3 > ( inverse : list )
+  }
+  entity R3 {
+    version : Num
+    list : Collection < S3 > ( inverse : generatedPropertyForInverse_R3_list )
+    name : String
+    generatedPropertyForInverse_Q3_list : Collection < Q3 > ( inverse : list )
+  }
+  entity S3 {
+    version : Num
+    list : Collection < T3 > ( inverse : generatedPropertyForInverse_S3_list )
+    name : String
+    generatedPropertyForInverse_R3_list : Collection < R3 > ( inverse : list )
+  }
+  entity T3 {
+    version : Num
+    list : Collection < U3 > ( inverse : generatedPropertyForInverse_T3_list )
+    name : String
+    generatedPropertyForInverse_S3_list : Collection < S3 > ( inverse : list )
+  }
+  entity U3 {
+    version : Num
+    list : Collection < V3 > ( inverse : generatedPropertyForInverse_U3_list )
+    name : String
+    generatedPropertyForInverse_T3_list : Collection < T3 > ( inverse : list )
+  }
+  entity V3 {
+    version : Num
+    list : Collection < W3 > ( inverse : generatedPropertyForInverse_V3_list )
+    name : String
+    generatedPropertyForInverse_U3_list : Collection < U3 > ( inverse : list )
+  }
+  entity W3 {
+    version : Num
+    list : Collection < X3 > ( inverse : generatedPropertyForInverse_W3_list )
+    name : String
+    generatedPropertyForInverse_V3_list : Collection < V3 > ( inverse : list )
+  }
+  entity X3 {
+    version : Num
+    list : Collection < Y3 > ( inverse : generatedPropertyForInverse_X3_list )
+    name : String
+    generatedPropertyForInverse_W3_list : Collection < W3 > ( inverse : list )
+  }
+  entity Y3 {
+    version : Num
+    list : Collection < Z3 > ( inverse : generatedPropertyForInverse_Y3_list )
+    name : String
+    generatedPropertyForInverse_X3_list : Collection < X3 > ( inverse : list )
+  }
+  entity Z3 {
+    version : Num
+    list : Collection < A4 > ( inverse : generatedPropertyForInverse_Z3_list )
+    name : String
+    generatedPropertyForInverse_Y3_list : Collection < Y3 > ( inverse : list )
+  }
+  entity A4 {
+    version : Num
+    list : Collection < B4 > ( inverse : generatedPropertyForInverse_A4_list )
+    name : String
+    generatedPropertyForInverse_Z3_list : Collection < Z3 > ( inverse : list )
+  }
+  entity B4 {
+    version : Num
+    list : Collection < C4 > ( inverse : generatedPropertyForInverse_B4_list )
+    name : String
+    generatedPropertyForInverse_A4_list : Collection < A4 > ( inverse : list )
+  }
+  entity C4 {
+    version : Num
+    list : Collection < D4 > ( inverse : generatedPropertyForInverse_C4_list )
+    name : String
+    generatedPropertyForInverse_B4_list : Collection < B4 > ( inverse : list )
+  }
+  entity D4 {
+    version : Num
+    list : Collection < E4 > ( inverse : generatedPropertyForInverse_D4_list )
+    name : String
+    generatedPropertyForInverse_C4_list : Collection < C4 > ( inverse : list )
+  }
+  entity E4 {
+    version : Num
+    list : Collection < F4 > ( inverse : generatedPropertyForInverse_E4_list )
+    name : String
+    generatedPropertyForInverse_D4_list : Collection < D4 > ( inverse : list )
+  }
+  entity F4 {
+    version : Num
+    list : Collection < G4 > ( inverse : generatedPropertyForInverse_F4_list )
+    name : String
+    generatedPropertyForInverse_E4_list : Collection < E4 > ( inverse : list )
+  }
+  entity G4 {
+    version : Num
+    list : Collection < H4 > ( inverse : generatedPropertyForInverse_G4_list )
+    name : String
+    generatedPropertyForInverse_F4_list : Collection < F4 > ( inverse : list )
+  }
+  entity H4 {
+    version : Num
+    list : Collection < I4 > ( inverse : generatedPropertyForInverse_H4_list )
+    name : String
+    generatedPropertyForInverse_G4_list : Collection < G4 > ( inverse : list )
+  }
+  entity I4 {
+    version : Num
+    list : Collection < J4 > ( inverse : generatedPropertyForInverse_I4_list )
+    name : String
+    generatedPropertyForInverse_H4_list : Collection < H4 > ( inverse : list )
+  }
+  entity J4 {
+    version : Num
+    list : Collection < K4 > ( inverse : generatedPropertyForInverse_J4_list )
+    name : String
+    generatedPropertyForInverse_I4_list : Collection < I4 > ( inverse : list )
+  }
+  entity K4 {
+    version : Num
+    list : Collection < L4 > ( inverse : generatedPropertyForInverse_K4_list )
+    name : String
+    generatedPropertyForInverse_J4_list : Collection < J4 > ( inverse : list )
+  }
+  entity L4 {
+    version : Num
+    list : Collection < M4 > ( inverse : generatedPropertyForInverse_L4_list )
+    name : String
+    generatedPropertyForInverse_K4_list : Collection < K4 > ( inverse : list )
+  }
+  entity M4 {
+    version : Num
+    list : Collection < N4 > ( inverse : generatedPropertyForInverse_M4_list )
+    name : String
+    generatedPropertyForInverse_L4_list : Collection < L4 > ( inverse : list )
+  }
+  entity N4 {
+    version : Num
+    list : Collection < O4 > ( inverse : generatedPropertyForInverse_N4_list )
+    name : String
+    generatedPropertyForInverse_M4_list : Collection < M4 > ( inverse : list )
+  }
+  entity O4 {
+    version : Num
+    list : Collection < P4 > ( inverse : generatedPropertyForInverse_O4_list )
+    name : String
+    generatedPropertyForInverse_N4_list : Collection < N4 > ( inverse : list )
+  }
+  entity P4 {
+    version : Num
+    list : Collection < Q4 > ( inverse : generatedPropertyForInverse_P4_list )
+    name : String
+    generatedPropertyForInverse_O4_list : Collection < O4 > ( inverse : list )
+  }
+  entity Q4 {
+    version : Num
+    name : String
+    generatedPropertyForInverse_P4_list : Collection < P4 > ( inverse : list )
+  }
