@@ -177,29 +177,42 @@ rules // Utility
     (selected, position, ast, path, project-path) -> (filename, result)
     with
       filename := <guarantee-extension(|"csv")> path;
-      result   := <transform-to-csv-string(|path)> ast
+      result   := <transform-to-csv-string(get-first-total-result, get-second-total-result|path)> ast
   
   transform-to-csv-summary:
     (selected, position, ast, path, project-path) -> (filename, result)
     with
       filename := <guarantee-extension(|"avg.csv")> path;
-      result   := <transform-to-csv-string-summary(|path)> ast
+      result   := <transform-to-csv-string-summary(get-first-total-result, get-second-total-result|path)> ast
+      
+  
+   transform-to-csv-last:
+    (selected, position, ast, path, project-path) -> (filename, result)
+    with
+      filename := <guarantee-extension(|"csv")> path;
+      result   := <transform-to-csv-string(get-first-total-result, get-second-total-result|path)> ast
+  
+  transform-to-csv-summary-last:
+    (selected, position, ast, path, project-path) -> (filename, result)
+    with
+      filename := <guarantee-extension(|"avg.csv")> path;
+      result   := <transform-to-csv-string-summary(get-first-last-result, get-second-last-result|path)> ast
 
 
-	transform-to-csv-string(|path): Module(Results, _) -> string
+	transform-to-csv-string(get-result1, get-result2|path): Module(Results, _) -> string
 		with
-			results1 := <map(get-first-total-result)> Results;
+			results1 := <map(get-result1)> Results;
 			average1 := <map(string-to-real); average; real-to-string> results1;
-			results2 := <map(get-second-total-result)> Results;
+			results2 := <map(get-result2)> Results;
 			average2 := <map(string-to-real); average; real-to-string> results2;
 			list := <concat> [[<remove-extension> path |results1], [average1,"",average2], results2];
 			string := <separate-by(|";"); concat-strings> list
 	
-	transform-to-csv-string-summary(|path): Module(Results, _) -> string
+	transform-to-csv-string-summary(get-result1, get-result2|path): Module(Results, _) -> string
 		with
-			results1 := <map(get-first-total-result)> Results;
+			results1 := <map(get-result1)> Results;
 			average1 := <map(string-to-real); average; real-to-string> results1;
-			results2 := <map(get-second-total-result)> Results;
+			results2 := <map(get-result2)> Results;
 			average2 := <map(string-to-real); average; real-to-string> results2;
 			list := [<remove-extension> path, average1,"",average2];
 			string := <separate-by(|";"); concat-strings> list
@@ -209,4 +222,14 @@ rules // Utility
 	
 	get-second-total-result: Result(_,_,_,_,_,Total(time,_)) -> time
 	
+	
+	get-first-last-result: Result(_,_,results,_,_,_) -> time
+		where   
+			last
+			; ?ResultLine(_, time, _)
+	
+	get-second-last-result: Result(_,_,_,_,results,_) -> time
+		where   
+			last
+			; ?ResultLine(_, time, _)
  	
