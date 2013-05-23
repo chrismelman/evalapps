@@ -1,0 +1,13 @@
+module webservices::mobl::model
+  entity A {
+    version : Num
+    list : Collection < B > ( inverse : generatedPropertyForInverse_A_list )
+    name : String
+    lastSynced : Num
+    sync : Bool
+  }
+  entity B {
+    version : Num
+    prop1 : String
+    generatedPropertyForInverse_A_list : Collection < A > ( inverse : list )
+  }
