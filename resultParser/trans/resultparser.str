@@ -190,7 +190,7 @@ rules // Utility
     (selected, position, ast, path, project-path) -> (filename, result)
     with
       filename := <guarantee-extension(|"csv")> path;
-      result   := <transform-to-csv-string(get-first-total-result, get-second-total-result|path)> ast
+      result   := <transform-to-csv-string(get-first-last-result, get-second-last-result|path)> ast
   
   transform-to-csv-summary-last:
     (selected, position, ast, path, project-path) -> (filename, result)
@@ -224,12 +224,12 @@ rules // Utility
 	
 	
 	get-first-last-result: Result(_,_,results,_,_,_) -> time
-		where   
-			last
+		where 
+			<last> results
 			; ?ResultLine(_, time, _)
 	
 	get-second-last-result: Result(_,_,_,_,results,_) -> time
-		where   
-			last
+		where
+			<last> results
 			; ?ResultLine(_, time, _)
  	

@@ -26,8 +26,8 @@ builders
   builder  : "Reload index"                        = debug-index-reload (meta) (source)        
   builder  : "generate csv"                        = transform-to-csv  (realtime) (source)    
   builder  : "generate csv average"                =  transform-to-csv-summary  (realtime) (source)    
-  builder  : "generate csv of last result"         = transform-to-csv  (realtime) (source)    
-  builder  : "generate csv average of last result" =  transform-to-csv-summary  (realtime) (source)    
+  builder  : "generate csv of last result"         = transform-to-csv-last  (realtime) (source)    
+  builder  : "generate csv average of last result" =  transform-to-csv-summary-last  (realtime) (source)    
 
                            
                                                                                                                             
