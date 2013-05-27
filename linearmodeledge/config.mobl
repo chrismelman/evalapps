@@ -1,0 +1,12 @@
+configuration
+
+title "yellowgrassModel"
+
+ 
+output "../../../../tomcat/webapps/linearmodeledge"
+// version "0.3.0"
+//debug 
+// // stdlib "C:\Users\Chris\git\mobl-lib" 
+stdlib "C:\Users\Chris\git\mobl-build-clean\stdlib"
+html mobl.html    
+                                       
