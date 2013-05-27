@@ -1,0 +1,37 @@
+module webservices::mobl::model
+  entity A {
+    version : Num
+    list : Collection < B > ( inverse : generatedPropertyForInverse_A_list )
+    name : String
+    lastSynced : Num
+    sync : Bool
+  }
+  entity B {
+    version : Num
+    list : Collection < C > ( inverse : generatedPropertyForInverse_B_list )
+    name : String
+    generatedPropertyForInverse_A_list : Collection < A > ( inverse : list )
+  }
+  entity C {
+    version : Num
+    list : Collection < D > ( inverse : generatedPropertyForInverse_C_list )
+    name : String
+    generatedPropertyForInverse_B_list : Collection < B > ( inverse : list )
+  }
+  entity D {
+    version : Num
+    list : Collection < E > ( inverse : generatedPropertyForInverse_D_list )
+    name : String
+    generatedPropertyForInverse_C_list : Collection < C > ( inverse : list )
+  }
+  entity E {
+    version : Num
+    list : Collection < F > ( inverse : generatedPropertyForInverse_E_list )
+    name : String
+    generatedPropertyForInverse_D_list : Collection < D > ( inverse : list )
+  }
+  entity F {
+    version : Num
+    name : String
+    generatedPropertyForInverse_E_list : Collection < E > ( inverse : list )
+  }
