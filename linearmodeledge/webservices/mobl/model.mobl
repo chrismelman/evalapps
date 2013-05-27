@@ -10,6 +10,7 @@ module webservices::mobl::model
     version : Num
     list : Collection < C > ( inverse : generatedPropertyForInverse_B_list )
     name : String
+    generatedPropertyForInverse_F_list : Collection < F > ( inverse : list )
     generatedPropertyForInverse_A_list : Collection < A > ( inverse : list )
   }
   entity C {
@@ -32,6 +33,7 @@ module webservices::mobl::model
   }
   entity F {
     version : Num
+    list : Collection < B > ( inverse : generatedPropertyForInverse_F_list )
     name : String
     generatedPropertyForInverse_E_list : Collection < E > ( inverse : list )
   }

@@ -23,9 +23,9 @@ extend entity E {
     else
     {
       var arraylist := JSONArray() ;
-      for ( f_0 : F in this.list )
+      for ( r_0 : F in this.list )
         {
-          arraylist.put(makeJSONObjectFromEntityRef(f_0));
+          arraylist.put(makeJSONObjectFromEntityRef(r_0));
         }
       object.put("list", arraylist);
     }

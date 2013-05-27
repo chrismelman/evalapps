@@ -16,6 +16,19 @@ extend entity F {
   function toJSON ( ) : JSONObject
   {
     var object := JSONObject() ;
+    if ( this.list == null )
+    {
+      object.put("list", ( null as JSONObject ));
+    }
+    else
+    {
+      var arraylist := JSONArray() ;
+      for ( s_0 : B in this.list )
+        {
+          arraylist.put(makeJSONObjectFromEntityRef(s_0));
+        }
+      object.put("list", arraylist);
+    }
     if ( this.name == null )
     {
       object.put("name", ( null as JSONObject ));

@@ -211,6 +211,7 @@ module webservices::mobl::simpleView
     group {
       showTextField ( "id" , ent . id )
       showNumField ( "version" , ent . version )
+      showEntitiesField ( "list" , ent . list , showBSimple )
       showTextField ( "name" , ent . name )
     }
   }

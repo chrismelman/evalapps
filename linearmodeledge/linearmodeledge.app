@@ -33,7 +33,9 @@ entity B {
 	}
 	
 	function addEdge(){
-		list.add(list[0]);	
+		var rand := Random();
+		var allEnts := C.all();
+		list.add(allEnts[(rand.nextInt(allEnts.length) )]);		
 	}
 }
 
@@ -57,7 +59,9 @@ function newB(name : String) : B {
 	}
 	
 	function addEdge(){
-		list.add(list[0]);	
+		var rand := Random();
+		var allEnts := D.all();
+		list.add(allEnts[(rand.nextInt(allEnts.length))]);	
 	}
 	
 }
@@ -82,7 +86,9 @@ entity D {
 	}
 	
 	function addEdge(){
-		list.add(list[0]);	
+var rand := Random();
+		var allEnts := E.all();
+		list.add(allEnts[(rand.nextInt(allEnts.length) )]);	
 	}
 	
 }
@@ -108,7 +114,9 @@ entity E {
 	}
 	
 	function addEdge(){
-		list.add(list[0]);	
+		var rand := Random();
+		var allEnts := F.all();
+		list.add(allEnts[(rand.nextInt(allEnts.length) )]);	
 	}
 	
 }
@@ -124,8 +132,18 @@ function newE(name : String) : E {
 
 entity F {
 	name :: String
+	list -> List<B>
 	
-
+	function resetedge() {
+		var newList := List<B>();	
+		list := newList;
+	}
+	
+	function addEdge(){
+		var rand := Random();
+		var allEnts := B.all();
+		list.add(allEnts[(rand.nextInt(allEnts.length) )]);	
+	}
 
 }  
 
@@ -147,9 +165,9 @@ init {
 }
 
 function resetEdges(){
-	for(ent : A in A.all()) {
-		ent.resetedge();	
-	}
+	// for(ent : A in A.all()) {
+	// 	ent.resetedge();	
+	// }
 	for(ent : B in B.all()) {
 		ent.resetedge();	
 	}
@@ -161,17 +179,20 @@ function resetEdges(){
 	}
 	for(ent : E in E.all()) {
 		ent.resetedge();	
-	}	
+	}
+	for(ent : F in F.all()) {
+		ent.resetedge();	
+	}		
 }
 
 function setEdges(number : Int){
 	resetEdges();
 	
-	for(ent : A in A.all()) {
-		for(count : Int from 1 to number){
-			ent.addEdge();
-		}	
-	}
+	// for(ent : A in A.all()) {
+	// 	for(count : Int from 1 to number){
+	// 		ent.addEdge();
+	// 	}	
+	// }
 	for(ent : B in B.all()) {
 		for(count : Int from 1 to number){
 			ent.addEdge();
@@ -191,11 +212,16 @@ function setEdges(number : Int){
 		for(count : Int from 1 to number){
 			ent.addEdge();
 		}	
+	}
+	for(ent : F in F.all()) {
+		for(count : Int from 1 to number){
+			ent.addEdge();
+		}	
 	}	
-}
+} 
 page resetEdges(){
 	init{
-		resetEdges();
+		resetEdges();  
 		
 	}
 }
@@ -205,3 +231,8 @@ page setEdge(number : Int){
 		setEdges(number);
 	}
 }
+
+native class java.util.Random as Random {
+    constructor()
+    nextInt(Int) : Int
+ }
