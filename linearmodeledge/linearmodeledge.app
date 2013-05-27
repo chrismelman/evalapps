@@ -1,6 +1,6 @@
 application linearmodeledge
 
-// imports webservices/services/interface
+imports webservices/services/interface
 page root(){
 	 
 }
@@ -10,13 +10,31 @@ entity A{
 	name : String
 	list -> List<B>
 	
+	function resetedge() {
+		var newList := List<B>();	
+		newList.addAll(list.set());
+		list := newList;
+	}
+	
+	function addEdge(){
+		list.addAll(list.set());	
+	}
+	
 }
 
 entity B {
-	name :: String
+	name :: String 
 	list -> List<C>
 	
+	function resetedge() {
+		var newList := List<C>();	
+		newList.add(list[0]);
+		list := newList;
+	}
 	
+	function addEdge(){
+		list.add(list[0]);	
+	}
 }
 
 function newB(name : String) : B {
@@ -32,6 +50,15 @@ function newB(name : String) : B {
 	name :: String
 	list -> List<D>
 	
+	function resetedge() {
+		var newList := List<D>();	
+		newList.add(list[0]);
+		list := newList;
+	}
+	
+	function addEdge(){
+		list.add(list[0]);	
+	}
 	
 }
 
@@ -48,6 +75,15 @@ entity D {
 	name :: String
 	list -> List<E>
 	
+	function resetedge() {
+		var newList := List<E>();	
+		newList.add(list[0]);
+		list := newList;
+	}
+	
+	function addEdge(){
+		list.add(list[0]);	
+	}
 	
 }
 
@@ -63,7 +99,17 @@ function newD(name : String) : D {
 entity E {
 	name :: String
 	list -> List<F>
+	 
+	 
+	function resetedge() {
+		var newList := List<F>();	
+		newList.add(list[0]);
+		list := newList;
+	}
 	
+	function addEdge(){
+		list.add(list[0]);	
+	}
 	
 }
 
@@ -79,19 +125,83 @@ function newE(name : String) : E {
 entity F {
 	name :: String
 	
+
+
 }  
 
 function newF (name : String) : F {
 	  var ent := F{name := name}; 
 	  ent.save();
 	  return ent;
+	  
+	 
 }
 
 init {
 	var defstring := "aaaa";
 	var a := A{ name := defstring };
 	a.save();
-	while(a.list.length < 1){
+	while(a.list.length < 100){
 		a.list.add(newB(defstring));
+	}
+}
+
+function resetEdges(){
+	for(ent : A in A.all()) {
+		ent.resetedge();	
+	}
+	for(ent : B in B.all()) {
+		ent.resetedge();	
+	}
+	for(ent : C in C.all()) {
+		ent.resetedge();	
+	}
+	for(ent : D in D.all()) {
+		ent.resetedge();	
+	}
+	for(ent : E in E.all()) {
+		ent.resetedge();	
+	}	
+}
+
+function setEdges(number : Int){
+	resetEdges();
+	
+	for(ent : A in A.all()) {
+		for(count : Int from 1 to number){
+			ent.addEdge();
+		}	
+	}
+	for(ent : B in B.all()) {
+		for(count : Int from 1 to number){
+			ent.addEdge();
+		}	
+	}
+	for(ent : C in C.all()) {
+		for(count : Int from 1 to number){
+			ent.addEdge();
+		}	
+	}
+	for(ent : D in D.all()) {
+		for(count : Int from 1 to number){
+			ent.addEdge();
+		}	
+	}
+	for(ent : E in E.all()) {
+		for(count : Int from 1 to number){
+			ent.addEdge();
+		}	
+	}	
+}
+page resetEdges(){
+	init{
+		resetEdges();
+		
+	}
+}
+
+page setEdge(number : Int){
+	init{
+		setEdges(number);
 	}
 }
