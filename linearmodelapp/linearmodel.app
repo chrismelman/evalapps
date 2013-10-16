@@ -5,7 +5,7 @@ page root(){
 	 
 }
 
-derive webservices for A , with nameproperty name 
+// derive webservices for A , with nameproperty name 
 entity A{
 	name : String
 	list -> List<B>
@@ -85,6 +85,26 @@ function newF (name : String) : F {
 	  var ent := F{name := name}; 
 	  ent.save();
 	  return ent;
+}
+
+page number(){
+	
+	par{"A " output(A.all().length)}
+	par{"B " output(B.all().length)}
+	par{"C " output(C.all().length)}
+	par{"D " output(D.all().length)}
+	par{"E " output(E.all().length)}
+	par{"F " output(E.all().length)}
+	
+}
+
+page addEntities(add : Int) {
+	init{
+		for( Count : Int from 0 to add ) {
+			A.all()[0].list.add(newB("aaaa"));
+		} 
+	}
+	
 }
 
 init {

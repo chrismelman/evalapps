@@ -11,7 +11,7 @@ screen root(){
 	 	log(num);
 	 	num = num + 1;
 	 	LocalStorage.setItem("num", num);
-	 	if(num <= 5){
+	 	if(num <= 3){
 	 		test(); 
 	 	} else {
 	 		LocalStorage.setItem("num", 0);
@@ -37,3 +37,4 @@ function test(){
 	resetDatabase();
 	reload();
 	}
+ 
