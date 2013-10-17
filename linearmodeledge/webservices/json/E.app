@@ -5,11 +5,11 @@ extend entity E {
     var object := JSONObject() ;
     if ( this.name != null )
     {
-      object.put("name", name);
+      object.put("name", this.name);
     }
     if ( this.id != null )
     {
-      object.put("id", id);
+      object.put("id", this.id);
     }
     return object;
   }
@@ -23,9 +23,9 @@ extend entity E {
     else
     {
       var arraylist := JSONArray() ;
-      for ( r_0 : F in this.list )
+      for ( w_52854 : F in this.list )
         {
-          arraylist.put(makeJSONObjectFromEntityRef(r_0));
+          arraylist.put(makeJSONObjectFromEntityRef(w_52854));
         }
       object.put("list", arraylist);
     }
@@ -60,11 +60,11 @@ extend entity E {
     var object := JSONObject() ;
     if ( this.version != null )
     {
-      object.put("version", version);
+      object.put("version", this.version);
     }
     if ( this.id != null )
     {
-      object.put("id", id);
+      object.put("id", this.id);
     }
     return object;
   }

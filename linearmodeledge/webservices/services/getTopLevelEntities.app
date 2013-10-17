@@ -11,7 +11,6 @@ service webservice_generated_getTopLevelEntities ( )
       if ( topent.mayReadSynchronize() )
       {
         array.put(topent.toSimpleJSON());
-        array.put(topent.toSimpleJSON());
       }
     }
   jsonobj.put("name", "A");

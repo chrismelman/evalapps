@@ -5,7 +5,7 @@ page root(){
 	 
 }
 
-derive webservices for A , with nameproperty name 
+// derive webservices for A , with nameproperty name 
 entity A{
 	name : String
 	list -> List<B>
@@ -19,7 +19,9 @@ entity A{
 	function addEdge(){
 		list.addAll(list.set());	
 	}
-	
+	synchronization configuration  {
+		toplevel name property :name
+	}
 }
 
 entity B {
@@ -53,7 +55,7 @@ function newB(name : String) : B {
 	list -> List<D>
 	
 	function resetedge() {
-		var newList := List<D>();	
+		var newList := List<D>();	 
 		newList.add(list[0]);
 		list := newList;
 	}

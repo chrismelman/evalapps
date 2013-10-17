@@ -5,11 +5,11 @@ extend entity F {
     var object := JSONObject() ;
     if ( this.name != null )
     {
-      object.put("name", name);
+      object.put("name", this.name);
     }
     if ( this.id != null )
     {
-      object.put("id", id);
+      object.put("id", this.id);
     }
     return object;
   }
@@ -23,9 +23,9 @@ extend entity F {
     else
     {
       var arraylist := JSONArray() ;
-      for ( s_0 : B in this.list )
+      for ( x_52854 : B in this.list )
         {
-          arraylist.put(makeJSONObjectFromEntityRef(s_0));
+          arraylist.put(makeJSONObjectFromEntityRef(x_52854));
         }
       object.put("list", arraylist);
     }
@@ -60,11 +60,11 @@ extend entity F {
     var object := JSONObject() ;
     if ( this.version != null )
     {
-      object.put("version", version);
+      object.put("version", this.version);
     }
     if ( this.id != null )
     {
-      object.put("id", id);
+      object.put("id", this.id);
     }
     return object;
   }
