@@ -95,6 +95,7 @@ page setSize( a : Int, b: Int, c: Int, d: Int, e: Int){
 		}
 	}
 	
+	par{"size " output(B.all()[0].toJSON().toString().length()) " b " output(B.all()[0].toJSON().toString().length().floatValue()/1024.floatValue())} " kb"
 }
 
 page calcSize( a : Int, b: Int, c: Int, d: Int, e: Int){
